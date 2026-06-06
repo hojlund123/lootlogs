@@ -94,7 +94,7 @@ function render(data) {
       row => `
         <div class="loot-card" data-item-id="${row.itemID}">
           <div class="card-header" style="border-left: 4px solid ${getClassColor(row.winnerClass)}">
-            <div class="item-name"><a href="https://www.wowhead.com/item=${row.itemID}" target="_blank" class="wh-tooltip">${row.itemName}</a></div>
+            <div class="item-name"><a href="https://tbc.wowhead.com/item=${row.itemID}" target="_blank" class="wh-tooltip">${row.itemName}</a></div>
             <div class="card-meta">
               <span class="date">${row.date}</span>
               ${row.softReserve ? '<span class="badge sr">Soft Reserved</span>' : ''}
