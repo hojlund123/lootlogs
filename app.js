@@ -109,24 +109,34 @@ function render(data) {
               <div class="winner-info">
                 <div class="winner-name">${row.player}</div>
               </div>
-              ${row.rolls.length > 0 ? '<div class="expand-toggle">▼</div>' : ''}
             </div>
             ${row.rolls.length > 0 ? `
               <div class="rolls-section">
                 <div class="rolls-title">Rolls (${row.rolls.length})</div>
                 <div class="rolls-list">
-                  ${row.rolls
-                    .sort((a, b) => b.amount - a.amount)
-                    .map(
-                      roll => `
-                        <div class="roll-item">
+                  ${(() => {
+                    let allRolls = [...row.rolls].sort((a, b) => b.amount - a.amount);
+                    
+                    // If soft reserved, show all SR rolls first with golden highlighting
+                    if (row.softReserve) {
+                      return allRolls.map(roll => `
+                        <div class="roll-item roll-item-sr">
                           <span class="roll-player">${roll.player}</span>
                           <span class="roll-amount">${roll.amount}</span>
-                          <span class="roll-spec ${roll.classification.toLowerCase()}">${roll.classification}</span>
+                          <span class="roll-badge-sr">SR</span>
                         </div>
-                      `
-                    )
-                    .join("")}
+                      `).join('');
+                    }
+                    
+                    // Otherwise show all rolls sorted by amount
+                    return allRolls.map(roll => `
+                      <div class="roll-item">
+                        <span class="roll-player">${roll.player}</span>
+                        <span class="roll-amount">${roll.amount}</span>
+                        <span class="roll-spec ${roll.classification.toLowerCase()}">${roll.classification}</span>
+                      </div>
+                    `).join('');
+                  })()}
                 </div>
               </div>
             ` : ""}
@@ -141,22 +151,6 @@ function render(data) {
     WowheadPower.refreshLinks();
   }
 }
-
-// Add event delegation for expand toggles
-document.getElementById("lootContainer").addEventListener("click", (e) => {
-  const toggle = e.target.closest(".expand-toggle");
-  if (!toggle) return;
-
-  const card = toggle.closest(".loot-card");
-  
-  // Remove expanded class from all cards
-  document.querySelectorAll(".loot-card.expanded").forEach(expandedCard => {
-    expandedCard.classList.remove("expanded");
-  });
-  
-  // Add expanded class only to the clicked card
-  card.classList.add("expanded");
-});
 
 function applyFilters() {
   const searchQuery = document.getElementById("search").value.toLowerCase();
@@ -182,8 +176,10 @@ function applyFilters() {
   render(filtered);
 }
 
-document.getElementById("search").addEventListener("input", applyFilters);
-document.getElementById("classFilter").addEventListener("change", applyFilters);
-document.getElementById("typeFilter").addEventListener("change", applyFilters);
+document.getElementById("search")?.addEventListener("input", applyFilters);
+document.getElementById("classFilter")?.addEventListener("change", applyFilters);
+document.getElementById("typeFilter")?.addEventListener("change", applyFilters);
 
-loadData();
+if (document.getElementById("lootContainer")) {
+  loadData();
+}
