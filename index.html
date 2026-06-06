@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Guild Loot History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="https://wow.zamimg.com/js/tooltips.js"></script>
+
+  <div class="container">
+    <h1>Guild Loot History</h1>
+
+    <div class="controls">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search player or item..."
+      >
+      <div class="filters">
+        <select id="classFilter">
+          <option value="">All Classes</option>
+          <option value="warrior">Warrior</option>
+          <option value="paladin">Paladin</option>
+          <option value="hunter">Hunter</option>
+          <option value="rogue">Rogue</option>
+          <option value="priest">Priest</option>
+          <option value="deathknight">Death Knight</option>
+          <option value="shaman">Shaman</option>
+          <option value="mage">Mage</option>
+          <option value="warlock">Warlock</option>
+          <option value="druid">Druid</option>
+        </select>
+        <select id="typeFilter">
+          <option value="">All Types</option>
+          <option value="ms">Main Spec</option>
+          <option value="os">Off Spec</option>
+          <option value="sr">Soft Reserved</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="lootContainer" class="loot-grid"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
