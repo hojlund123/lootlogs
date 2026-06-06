@@ -104,22 +104,6 @@ select:focus {
   color: #4a9eff;
   text-decoration: none;
   transition: color 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.item-name a.item-link::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: var(--icon-url);
-  border-radius: 2px;
-  flex-shrink: 0;
 }
 
 .item-name a:hover {
