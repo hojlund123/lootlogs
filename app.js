@@ -94,7 +94,7 @@ function render(data) {
       row => `
         <div class="loot-card" data-item-id="${row.itemID}">
           <div class="card-header" style="border-left: 4px solid ${getClassColor(row.winnerClass)}">
-            <div class="item-name"><a href="https://www.wowhead.com/item=${row.itemID}" target="_blank" class="wh-tooltip item-link" data-wowhead="item=${row.itemID}" data-type="item"><span>${row.itemName}</span></a></div>
+            <div class="item-name"><a href="https://www.wowhead.com/item=${row.itemID}" target="_blank" class="wh-tooltip">${row.itemName}</a></div>
             <div class="card-meta">
               <span class="date">${row.date}</span>
               ${row.softReserve ? '<span class="badge sr">Soft Reserved</span>' : ''}
@@ -140,33 +140,6 @@ function render(data) {
   if (typeof WowheadPower !== 'undefined') {
     WowheadPower.refreshLinks();
   }
-
-  // Fetch and populate item icons
-  updateItemIcons();
-}
-
-// Fetch item icons from WoWHead
-async function updateItemIcons() {
-  const itemLinks = document.querySelectorAll(".item-link[data-wowhead]");
-  
-  itemLinks.forEach(async (link) => {
-    const itemId = link.getAttribute("data-wowhead").split("=")[1];
-    
-    // Try to fetch icon from WoWHead's API
-    try {
-      const response = await fetch(`https://www.wowhead.com/tooltip/item/${itemId}`);
-      const html = await response.text();
-      
-      // Parse the icon URL from the HTML
-      const iconMatch = html.match(/https:\/\/wow\.zamimg\.com\/images\/wow\/icons\/[^"]+/);
-      if (iconMatch) {
-        link.style.setProperty('--icon-url', `url('${iconMatch[0]}')`);
-      }
-    } catch (error) {
-      // Silently fail - icon won't show
-      console.debug('Could not load icon for item', itemId);
-    }
-  });
 }
 
 // Add event delegation for expand toggles
