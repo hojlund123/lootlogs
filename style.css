@@ -67,36 +67,37 @@ select:focus {
 
 .loot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
   margin-top: 24px;
 }
 
 .loot-card {
   background: #111620;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: none;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   border: 1px solid #1a1f38;
 }
 
 .loot-card:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-color: #4a9eff;
 }
 
 .card-header {
-  padding: 16px;
+  padding: 12px;
   border-bottom: 1px solid #1a1f38;
   background-color: #0a0e23;
 }
 
 .item-name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   word-break: break-word;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   line-height: 1.4;
 }
 
@@ -127,9 +128,9 @@ select:focus {
 
 .badge {
   display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -144,20 +145,20 @@ select:focus {
 }
 
 .card-body {
-  padding: 16px;
+  padding: 12px;
 }
 
 .winner-section {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 0;
 }
 
 .winner-class {
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +167,7 @@ select:focus {
   font-size: 14px;
   flex-shrink: 0;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
 }
 
 .class-icon {
@@ -182,9 +183,9 @@ select:focus {
 
 .winner-name {
   font-weight: 600;
-  color: #fff;
-  margin-bottom: 2px;
-  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 1px;
+  font-size: 13px;
 }
 
 .winner-class-name {
@@ -203,68 +204,60 @@ select:focus {
 
 .rolls-section {
   border-top: 1px solid #1a1f38;
-  padding-top: 0;
-  padding-bottom: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
-  opacity: 0;
-  margin-top: 12px;
+  padding-top: 8px;
+  margin-top: 8px;
 }
 
-.loot-card.expanded .rolls-section {
-  opacity: 1;
-  max-height: 500px;
-  padding-top: 12px;
-  padding-bottom: 0;
-}
 
-.expand-toggle {
-  font-size: 12px;
-  color: #888;
-  transition: transform 0.3s ease, color 0.2s;
-  cursor: pointer;
-  padding: 4px 8px;
-  margin-left: 8px;
-}
-
-.expand-toggle:hover {
-  color: #4a9eff;
-}
-
-.loot-card.expanded .expand-toggle {
-  transform: rotate(180deg);
-}
 
 .rolls-title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: #888;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   letter-spacing: 0.5px;
 }
 
 .rolls-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .roll-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 10px;
+  padding: 6px 8px;
   background-color: rgba(255, 255, 255, 0.02);
-  border-radius: 5px;
-  font-size: 12px;
+  border-radius: 4px;
+  font-size: 11px;
   border: 1px solid #1a1f38;
   transition: background-color 0.2s;
 }
 
 .roll-item:hover {
   background-color: rgba(255, 255, 255, 0.04);
+}
+
+.roll-item-sr {
+  background-color: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.roll-item-sr:hover {
+  background-color: rgba(212, 175, 55, 0.15);
+}
+
+.roll-badge-sr {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  background-color: #2a2410;
+  color: #d4af37;
 }
 
 .roll-player {
@@ -276,16 +269,16 @@ select:focus {
 .roll-amount {
   font-weight: 700;
   color: #6ab3ff;
-  margin: 0 8px;
-  min-width: 28px;
+  margin: 0 6px;
+  min-width: 24px;
   text-align: right;
 }
 
 .roll-spec {
   display: inline-block;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 9px;
   font-weight: 600;
 }
 
